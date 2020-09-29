@@ -113,6 +113,7 @@ namespace Business.CabLogic
                 return -1;
             }
             int newBookingId = _bookingDetails.Count;
+            // new booking Id will be size of booking details list
             var bookingDetail = new BookingDetail
             {
                 Id = newBookingId,
@@ -133,6 +134,7 @@ namespace Business.CabLogic
                 return -1;
             }
             var availablecabs = isPink ? _cabs.Where(x => x.IsAvailble && x.IsPink)?.ToList() : _cabs.Where(x=> x.IsAvailble)?.ToList();
+            // if pink cab needed then checks Availble pink cabs else checks Availble cabs
             if(availablecabs.IsNullOrEmpty())
             {
                 return -1;
@@ -203,6 +205,8 @@ namespace Business.CabLogic
                 return 0;
             }
             double totalAmount = _cabs[bookingDetail.CabId].IsPink ? _pinkCabCharge : 0;
+            // since total distance will be 2 times source to destination distance. if customer wants to go from point a to point b then
+            // we are assuming point `a` is source and point `b` is destination. 
             totalAmount += CalculateDistance(bookingDetail.Source,bookingDetail.Destination) * 2 * _chargePerKm;
             totalAmount += (bookingDetail.TripEndTime - bookingDetail.TripStartTime).TotalMinutes * _chargePerMinute;
             return Math.Round(totalAmount);
