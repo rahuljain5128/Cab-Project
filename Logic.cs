@@ -191,7 +191,7 @@ namespace Business.CabLogic
         }
         private static void LogAmountOfTrip(BookingDetail bookingDetail)
         {
-            if(bookingDetail == null || bookingDetail.Id == 0)
+            if(bookingDetail == null || bookingDetail.Id < 0)
             {
                 return;
             }
@@ -200,7 +200,7 @@ namespace Business.CabLogic
         }
         private static double CalculateAmountOfTrip(BookingDetail bookingDetail)
         {
-            if(bookingDetail == null || bookingDetail.Id == 0 || _cabs.IsNullOrEmpty())
+            if(bookingDetail == null || bookingDetail.Id < 0 || _cabs.IsNullOrEmpty())
             {
                 return 0;
             }
