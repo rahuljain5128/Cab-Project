@@ -4,8 +4,8 @@
 
     public class Location
     {
-        public long Lat{get;set;}
-        public long Lon{get;set;}    
+        public double Lat{get;set;}
+        public double Lon{get;set;}    
     }
  
     public class Cab
